@@ -2,7 +2,7 @@ POST http://127.0.0.1:8000/login/
 Content-Type: application/json
 
 {
-  "username": "exampleuser1",
+  "username": "exampleuser2",
   "email": "user@example.com",
   "password": "examplepassword"
 }
@@ -14,7 +14,7 @@ POST http://127.0.0.1:8000/signup/
 Content-Type: application/json
 
 {
-  "username": "exampleuser1",
+  "username": "exampleuser2",
   "email": "user@example.com",
   "password": "examplepassword"
 }
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 GET http://127.0.0.1:8000/test_token/
 Content-Type: application/json
-Authorization: Token 3e80d608c9e761e249fc69f1b0170b5e80d4f36a
+Authorization: Token bb66f14cea492e2700d77f0a25ba29891350909b
 
 
 ###
@@ -32,5 +32,24 @@ Authorization: Token 3e80d608c9e761e249fc69f1b0170b5e80d4f36a
 
 POST  http://127.0.0.1:8000/logout/
 Content-Type: application/json
-Authorization: Token 3e80d608c9e761e249fc69f1b0170b5e80d4f36a
+Authorization: Token bb66f14cea492e2700d77f0a25ba29891350909b
 
+
+###
+
+POST http://127.0.0.1:8000/chat_bot/store-groq-key/
+Content-Type: application/json
+Authorization: Token a7bcf61a5bf8dbe0c77ddd396a71025f93976fdb
+
+{
+    "groq_key": "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"
+}
+###
+
+POST http://127.0.0.1:8000/chat_bot/upload-pdf/6/
+Content-Type: application/json
+Authorization: Token a7bcf61a5bf8dbe0c77ddd396a71025f93976fdb
+
+{
+"pdf_document": "/Users/umar/digitalSoftwareMarket/ChatBot/Chat_Bot/TestPDf.pdf"
+}
