@@ -17,6 +17,8 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.document_loaders import PyPDFLoader
+from langchain_core.prompts import PromptTemplate
+
 
 __retriver__ = None
 
@@ -127,7 +129,18 @@ def format_docs(docs):
 
 # Define the RAG prompt
 def define_rag_prompt():
-    return hub.pull("rlm/rag-prompt")
+    template = """Use the following pieces of context to answer the question at the end.
+    If you don't know the answer, just say that you don't know, don't try to make up an answer.
+    Use three sentences maximum and keep the answer as concise as possible.
+    Always say "thanks for asking!" at the end of the answer.
+
+    {context}
+
+    Question: {question}
+
+    Helpful Answer:"""
+    custom_rag_prompt = PromptTemplate.from_template(template)
+    return custom_rag_prompt
 
 # Construct the RAG chain for the ChatApp
 def construct_rag_chain(retriever, llm, prompt):
